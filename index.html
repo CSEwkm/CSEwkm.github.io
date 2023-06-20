@@ -107,103 +107,11 @@
 </li>
 <li><p>allintext:</p>
 <p>在页面文本中指定的所有查询条件的结果。[ <a target="_blank" rel="noopener" href="https://www.google.com/search?q=allintext:+travel+packing+list">allintext: travel packing list</a> ]</p>
-</li>
-<li><p>allintitle:</p>
-<p>在标题中指定的所有查询词的结果。[allintitle: detect plagiarism]</p>
-</li>
-<li><p>allinurl:</p>
-<p>在URL中指定的所有查询条件的结果。[allinurl: google faq]将只返回URL中包含“google”和“faq”的文档，例如“<a target="_blank" rel="noopener" href="http://www.google.com/help/faq.html%E2%80%9D">www.google.com/help/faq.html”</a></p>
-</li>
-<li><p>author:</p>
-<p>特定组包含您指定的作者的新闻组（Google News）文章。作者可以是全名或部分姓名或电子邮件地址。</p>
-<p>[children author:john author:doe]或[children author:<a href="mailto:&#100;&#111;&#x65;&#64;&#x73;&#111;&#109;&#x65;&#97;&#100;&#100;&#x72;&#x65;&#x73;&#x73;&#46;&#99;&#x6f;&#109;">&#100;&#111;&#x65;&#64;&#x73;&#111;&#109;&#x65;&#97;&#100;&#100;&#x72;&#x65;&#x73;&#x73;&#46;&#99;&#x6f;&#109;</a>]返回包含由john doe或<a href="mailto:&#x64;&#111;&#101;&#64;&#115;&#x6f;&#109;&#x65;&#x61;&#x64;&#x64;&#114;&#101;&#115;&#x73;&#x2e;&#99;&#x6f;&#x6d;">&#x64;&#111;&#101;&#64;&#115;&#x6f;&#109;&#x65;&#x61;&#x64;&#x64;&#114;&#101;&#115;&#x73;&#x2e;&#99;&#x6f;&#x6d;</a>撰写的单词“children”的文章。如果您的查询包含<a href="%E5%B8%A6%E5%BC%95%E5%8F%B7">author: “ John Doe “</a>，Google将找不到指定作者为” Doe, John “的文章。</p>
-</li>
-<li><p>cache:url</p>
-<p>将显示谷歌缓存的网页版本，而不是页面的当前版本。例如，[cache:<a href="http://www.eff.org]。*注:不要在cache:和URL(网址)之间放空格。">www.eff.org]。*注:不要在cache:和URL(网址)之间放空格。</a>*</p>
-</li>
-<li><p>define:</p>
-<p>显示网页上对后面这个词的定义。用于查找单词、短语和缩写词的定义。</p>
-</li>
-<li><p>ext:</p>
-<p>这是filetype:的未记录别名。</p>
-</li>
-<li><p>filetype:pdf</p>
-<p>使用OR操作符，security filetype:pdf OR filetype:doc。更多文件类型<a target="_blank" rel="noopener" href="https://www.googleguide.com/file_type.html">File Type Conversion</a>.</p>
-</li>
-<li><p>group:</p>
-<p>特定组或子区域的新闻组文章。[ <a target="_blank" rel="noopener" href="https://groups.google.com/groups?q=sleep+group:misc.kids.moderated">sleep group:misc.kids.moderated</a> ] </p>
-</li>
-<li><p>id:</p>
-<p>这是info:的未记录别名。</p>
-</li>
-<li><p>inanchor: </p>
-<p>包含您在锚文本中指定的查询词或链接到该页面的页面。例如，[restaurants inanchor:gourmet]</p>
-</li>
-<li><p>info:</p>
-<p>查询info:URL将显示有关相应网页的一些信息。info:gothotel.com</p>
-<p><em>注意:info:和网页URL之间不能有空格。</em></p>
-<p>此功能也可以通过直接在谷歌搜索框中输入网页URL来获得。</p>
-</li>
-<li><p>insubject:</p>
-<p>Google Groups中的文章限制为包含您在主题中指定的术语的文章。例如，[insubject:“falling asleep”]将返回主题中包含短语“falling asleep”的Google Group文章。</p>
-<p><strong>相当于intitle:</strong></p>
-</li>
-<li><p>intext:term</p>
-<p>将结果限制为文本中包含term的文档。</p>
-<p><em>注意:intext:与后面的单词之间不能有空格。</em></p>
-<p>[intext:handsome intext:poets]&#x3D;&#x3D;[allintext: handsome poets]</p>
-</li>
-<li><p>intitle:term</p>
-<p>将结果限制为标题中包含term的文档。</p>
-<p><em>注意:标题和后面的单词之间不能有空格。</em></p>
-<p>[intitle:google intitle:search]&#x3D;&#x3D;[allintitle: google search]</p>
-</li>
-<li><p>inurl:</p>
-<p>在URL中包含该单词的文档。</p>
-<p>[inurl:print site:<a href="http://www.googleguide.com]">www.googleguide.com]</a></p>
-<p>[inurl:healthy eating]将返回在其URL中提到单词“healthy”的文档，并在文档的任何地方提到单词“eating”。</p>
-<p>在url中，单词经常一起运行。当您使用inurl:时，它们不需要一起运行。</p>
-<p><strong>[inurl:healthy inurl:eating]&#x3D;&#x3D;[allinurl:healthy eating]</strong></p>
-<p><em>注意:URL和后面的单词之间不能有空格。</em></p>
-</li>
-<li><p>link:URL</p>
-<p>显示指向该URL的页面。</p>
-<p>[ <a target="_blank" rel="noopener" href="https://www.google.com/search?q=link:www.googleguide.com">link:www.googleguide.com</a> ]</p>
-<p>注意:“<strong>您不能将链接搜索与常规关键字搜索结合起来</strong>。”</p>
-<p>[ <a target="_blank" rel="noopener" href="https://www.google.com/search?q=link:www.google.com+-site:google.com">link:www.google.com -site:google.com</a> ]</p>
-</li>
-<li><p>location:</p>
-<p><code>Google News</code>来自指定位置的文章 [ <a target="_blank" rel="noopener" href="https://news.google.com/news?q=queen+location:canada">queen location:canada</a> ] </p>
-</li>
-<li><p>movie:</p>
-<p>与电影相关的信息</p>
-</li>
-<li><p>related:</p>
-<p>与指定的网页相似的网页。例如，[related:<a href="http://www.consumerreports.org]将列出与消费者报告主页相似的网页。">www.consumerreports.org]将列出与消费者报告主页相似的网页。</a></p>
-<p><em>注意:不要在相关:和网页url之间包含空格。</em></p>
-</li>
-<li><p>site:</p>
-<p>结果限制为您指定的站点或域名。</p>
-<p><em>注意:不要在“site:”和域名之间包含空格。</em></p>
-<p><strong>将搜索操作符与基本搜索操作符+、-、OR和” “结合使用</strong>。例如，要从除microsoft.com以外的所有网站查找有关Windows安全的信息，请输入:</p>
-<p>[ <a target="_blank" rel="noopener" href="https://www.google.com/search?q=windows+security+-site:microsoft.com">windows security –site:microsoft.com</a> ]</p>
-</li>
-<li><p>source:</p>
-<p> <code>Google News</code>指定ID的新闻来源的文章。[election source:new_york_times]《纽约时报》中的带有“election”一词的文章。</p>
-<p>view-source 是一种协议。网页地址前输入：<code>view-source:</code> 可查看网页源码</p>
-</li>
-<li><p>weather city|location|<strong>postcode</strong></p>
-<p>该位置天气预报。由于weather不是高级操作符，因此不需要在单词后面包含冒号。*[weather Sunnyvale CA]将返回加利福尼亚州Sunnyvale的天气，[weather 94041]将返回包含邮政编码(美国邮政编码)94041的城市的天气，即加利福尼亚州山景城*。</p>
-</li>
-</ol>
-<h1 id="USENET的运行机制"><a href="#USENET的运行机制" class="headerlink" title="USENET的运行机制"></a>USENET的运行机制</h1><p>　　1）网络服务提供商（ISP）在一个网络中，设定一台服务器作为USENET专用服务器，再将它的网址告诉用户。</p>
-<p>　　2）用户发言，就向这个网址发送帖子（post），与发Email相似，但是格式不同，在USENET上发言必须使用专用的客户端。不过，现在大多数的Email客户端都带有新闻组功能</p>
-<p>　　3）查看其他人的发言时，从服务器下载其他人的帖子。下载完成后，如果想回复帖子，就再重复第二步。</p>
-<p><strong>USENET服务器每天会同其他USENET服务器交换帖子</strong>。USENET理论上是一个真正的全世界参与的讨论组。</p>
-<p>USENET中的讨论内容无所不包，所以必须根据主题分类。每一个主题就是一个”频道”，对这个主题感兴趣的用户就订阅这个频道。</p>
-<h1 id="文本文件-amp-二进制文件"><a href="#文本文件-amp-二进制文件" class="headerlink" title="文本文件&amp;二进制文件"></a>文本文件&amp;二进制文件</h1><p>文本文件，操作系统会对’\n’进行一些隐式变换，因此文本文件直接跨平台使用会出问题。<br>在<strong>Windows下，写入’\n’时，操作系统会隐式的将’\n’转换为”\r\n”</strong>，再写入到文件中；读的时候，会把“\r\n”隐式转化为’\n’，再读到变量中。<br>在Linux下，写入’\n’时，操作系统不做隐式变换。<br>二进制文件，操作系统不会对’\n’进行隐式变换，很多二进制文件（如电影、图片等）可以跨平台使用。</p>
-<p><strong>文本文件的一个缺点是，它的熵往往较低</strong>，也就是说，其实本可以用更小的存储空间记录这些信息。</p>
-
+        
+          <p class="article-more-link">
+            <a href="/2023/06/20/googel-search/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
